@@ -5,7 +5,7 @@ const Home = () => {
   const { isSignedIn } = useAuth();
 
   if (isSignedIn) {
-    return <Redirect href={"/"} />;
+    return <Redirect href={"/(root)/(tabs)/home"} />;
   }
   return <Redirect href="/(auth)/welcome" />;
 };
