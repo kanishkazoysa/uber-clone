@@ -54,7 +54,7 @@ export default function Layout() {
         name="home"
         options={{
           title: "Home",
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon source={icons.home} focused={focused} />
           ),
