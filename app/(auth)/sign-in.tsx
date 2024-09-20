@@ -1,5 +1,5 @@
-// import { useSignIn } from "@clerk/clerk-expo";
-import { Link, router } from "expo-router";
+import { useSignIn } from "@clerk/clerk-expo";
+import { Link, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Alert, Image, ScrollView, Text, View } from "react-native";
 
@@ -9,7 +9,8 @@ import OAuth from "@/components/OAuth";
 import { icons, images } from "@/constants";
 
 const SignIn = () => {
-  // const { signIn, setActive, isLoaded } = useSignIn();
+  const { signIn, setActive, isLoaded } = useSignIn();
+  const router = useRouter();
 
   const [form, setForm] = useState({
     email: "",
@@ -37,7 +38,7 @@ const SignIn = () => {
       console.log(JSON.stringify(err, null, 2));
       Alert.alert("Error", err.errors[0].longMessage);
     }
-  }, [isLoaded, form]);
+  }, [isLoaded, form.email, form.password]);
 
   return (
     <ScrollView className="flex-1 bg-white">
@@ -71,7 +72,7 @@ const SignIn = () => {
 
           <CustomButton
             title="Sign In"
-            // onPress={onSignInPress}
+            onPress={onSignInPress}
             className="mt-6"
           />
 
