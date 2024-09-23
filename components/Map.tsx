@@ -2,7 +2,7 @@ import { Text } from "react-native";
 import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
 
 const Map = () => {
-  // const region = {};
+  const region = {};
 
   return (
     <MapView
