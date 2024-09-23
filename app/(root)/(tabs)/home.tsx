@@ -40,28 +40,28 @@ const Home = () => {
     error,
   } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let { status } = await Location.requestForegroundPermissionsAsync();
-  //     if (status !== "granted") {
-  //       setHasPermission(false);
-  //       return;
-  //     }
-  //
-  //     let location = await Location.getCurrentPositionAsync({});
-  //
-  //     const address = await Location.reverseGeocodeAsync({
-  //       latitude: location.coords?.latitude!,
-  //       longitude: location.coords?.longitude!,
-  //     });
-  //
-  //     setUserLocation({
-  //       latitude: location.coords?.latitude,
-  //       longitude: location.coords?.longitude,
-  //       address: `${address[0].name}, ${address[0].region}`,
-  //     });
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setHasPermission(false);
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+
+      const address = await Location.reverseGeocodeAsync({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!,
+      });
+
+      setUserLocation({
+        latitude: location.coords?.latitude,
+        longitude: location.coords?.longitude,
+        address: `${address[0].name}, ${address[0].region}`,
+      });
+    })();
+  }, []);
 
   const handleDestinationPress = (location: {
     latitude: number;
