@@ -8,7 +8,6 @@ import {
   Keyboard,
   Platform,
 } from "react-native";
-
 import { InputFieldProps } from "@/types/type";
 
 const InputField = ({
