@@ -2,7 +2,6 @@ import { useSignIn } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Alert, Image, ScrollView, Text, View } from "react-native";
-
 import CustomButton from "@/components/CustomButton";
 import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
@@ -49,7 +48,6 @@ const SignIn = () => {
             Welcome 👋
           </Text>
         </View>
-
         <View className="p-5">
           <InputField
             label="Email"
@@ -59,7 +57,6 @@ const SignIn = () => {
             value={form.email}
             onChangeText={(value) => setForm({ ...form, email: value })}
           />
-
           <InputField
             label="Password"
             placeholder="Enter password"
@@ -69,15 +66,12 @@ const SignIn = () => {
             value={form.password}
             onChangeText={(value) => setForm({ ...form, password: value })}
           />
-
           <CustomButton
             title="Sign In"
             onPress={onSignInPress}
             className="mt-6"
           />
-
           <OAuth />
-
           <Link
             href="/sign-up"
             className="text-lg text-center text-general-200 mt-10"
