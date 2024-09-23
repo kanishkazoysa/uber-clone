@@ -72,8 +72,6 @@ const SignUp = () => {
         });
       }
     } catch (err: any) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
       setVerification({
         ...verification,
         error: err.errors[0].longMessage,
