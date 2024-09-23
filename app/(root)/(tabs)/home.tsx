@@ -25,7 +25,7 @@ const Home = () => {
   const { user } = useUser();
   const { signOut } = useAuth();
 
-  // const { setUserLocation, setDestinationLocation } = useLocationStore();
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
 
   const handleSignOut = () => {
     signOut();
