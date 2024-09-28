@@ -12,20 +12,18 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import GoogleTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
 import RideCard from "@/components/RideCard";
 import { icons, images } from "@/constants";
 import { useFetch } from "@/lib/fetch";
-// import { useLocationStore } from "@/store";
+import { useLocationStore } from "@/store";
 import { Ride } from "@/types/type";
 
 const Home = () => {
   const { user } = useUser();
   const { signOut } = useAuth();
-
-  // const { setUserLocation, setDestinationLocation } = useLocationStore();
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
 
   const handleSignOut = () => {
     signOut();
@@ -40,28 +38,28 @@ const Home = () => {
     error,
   } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let { status } = await Location.requestForegroundPermissionsAsync();
-  //     if (status !== "granted") {
-  //       setHasPermission(false);
-  //       return;
-  //     }
-  //
-  //     let location = await Location.getCurrentPositionAsync({});
-  //
-  //     const address = await Location.reverseGeocodeAsync({
-  //       latitude: location.coords?.latitude!,
-  //       longitude: location.coords?.longitude!,
-  //     });
-  //
-  //     setUserLocation({
-  //       latitude: location.coords?.latitude,
-  //       longitude: location.coords?.longitude,
-  //       address: `${address[0].name}, ${address[0].region}`,
-  //     });
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setHasPermission(false);
+        return;
+      }
+  
+      let location = await Location.getCurrentPositionAsync({});
+  
+      const address = await Location.reverseGeocodeAsync({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!,
+      });
+  
+      setUserLocation({
+        latitude: location.coords?.latitude,
+        longitude: location.coords?.longitude,
+        address: `${address[0].name}, ${address[0].region}`,
+      });
+    })();
+  }, []);
 
   const handleDestinationPress = (location: {
     latitude: number;
