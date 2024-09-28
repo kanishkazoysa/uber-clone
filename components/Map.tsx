@@ -135,7 +135,7 @@ const region = calculateRegion({
       mapType="mutedStandard"
       showsPointsOfInterest={false}
       initialRegion={region}
-      showsUserLocation={true}
+      // showsUserLocation={true}
       userInterfaceStyle="light"
     >
       {markers.map((marker, index) => (
