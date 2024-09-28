@@ -12,6 +12,7 @@ import { useFetch } from "@/lib/fetch";
 // } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
 import { Driver, MarkerData } from "@/types/type";
+import { calculateRegion } from "@/lib/map";
 
 const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
@@ -22,8 +23,16 @@ const Map = () => {
     destinationLatitude,
     destinationLongitude,
   } = useLocationStore();
-  const { selectedDriver, setDrivers } = useDriverStore();
 
+const region = calculateRegion({
+  userLatitude,
+  userLongitude,
+  destinationLatitude,
+  destinationLongitude,
+});
+
+
+  const { selectedDriver, setDrivers } = useDriverStore();
   const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
@@ -87,7 +96,7 @@ const Map = () => {
       tintColor="black"
       mapType="mutedStandard"
       showsPointsOfInterest={false}
-      // initialRegion={region}
+      initialRegion={region}
       showsUserLocation={true}
       userInterfaceStyle="light"
     >
