@@ -11,7 +11,7 @@ import { useFetch } from "@/lib/fetch";
 // } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
 import { Driver, MarkerData } from "@/types/type";
-import { calculateRegion } from "@/lib/map";
+import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 
 const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
@@ -74,19 +74,19 @@ const region = calculateRegion({
   const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
-  // useEffect(() => {
-  //   if (Array.isArray(drivers)) {
-  //     if (!userLatitude || !userLongitude) return;
+  useEffect(() => {
+    if (Array.isArray(drivers)) {
+      if (!userLatitude || !userLongitude) return;
 
-  //     const newMarkers = generateMarkersFromData({
-  //       data: drivers,
-  //       userLatitude,
-  //       userLongitude,
-  //     });
+      const newMarkers = generateMarkersFromData({
+        data: drivers,
+        userLatitude,
+        userLongitude,
+      });
 
-  //     setMarkers(newMarkers);
-  //   }
-  // }, [drivers, userLatitude, userLongitude]);
+      setMarkers(newMarkers);
+    }
+  }, [drivers, userLatitude, userLongitude]);
 
   // useEffect(() => {
   //   if (
