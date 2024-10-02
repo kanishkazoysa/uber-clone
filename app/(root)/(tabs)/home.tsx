@@ -169,7 +169,7 @@ const Home = () => {
   }) => {
     setDestinationLocation(location);
 
-    router.push('/(root)/');
+    router.push("/(root)/find-ride");
   };
 
   return (
