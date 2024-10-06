@@ -6,6 +6,7 @@ import GoogleTextInput from "@/components/GoogleTextInput";
 // import RideLayout from "@/components/RideLayout";
 import { icons } from "@/constants";
 import { useLocationStore } from "@/store";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const FindRide = () => {
   const {
@@ -16,9 +17,10 @@ const FindRide = () => {
   } = useLocationStore();
 
   return (
-    <View >
-     <Text>Find Ride</Text>
-    </View>
+    <SafeAreaView >
+     <Text className="text-2xl">You are here: {userAddress}</Text>
+     <Text className="text-2xl">You are going to : {destinationAddress}</Text>
+    </SafeAreaView>
   );
 };
 
