@@ -131,11 +131,11 @@ const Home = () => {
 
   const [hasPermission, setHasPermission] = useState<boolean>(false);
 
-  const {
-    data: recentRides,
-    loading,
-    error,
-  } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
+  // const {
+  //   data: recentRides,
+  //   loading,
+  //   error,
+  // } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
 
   useEffect(() => {
     (async () => {
@@ -153,8 +153,8 @@ const Home = () => {
       });
 
       setUserLocation({
-        latitude: location.coords?.latitude,
-        longitude: location.coords?.longitude,
+        // latitude: location.coords?.latitude,
+        // longitude: location.coords?.longitude,
         latitude: 6.5244,
         longitude: 3.3792,
         address: `${address[0].name}, ${address[0].region}`,
