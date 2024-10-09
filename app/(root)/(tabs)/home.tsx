@@ -131,11 +131,11 @@ const Home = () => {
 
   const [hasPermission, setHasPermission] = useState<boolean>(false);
 
-  // const {
-  //   data: recentRides,
-  //   loading,
-  //   error,
-  // } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
+  const {
+    data: recentRides,
+    loading,
+    error,
+  } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
 
   useEffect(() => {
     (async () => {
